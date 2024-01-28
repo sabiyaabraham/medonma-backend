@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+
     <style>
       body {
         font-family: 'Arial', sans-serif;
@@ -72,8 +82,12 @@
             })
             .catch((error) => {
               console.error(error.message)
+              Toastify({
+                text: `Error: ${error.message}`,
+                backgroundColor: 'red',
+              }).showToast()
               // Handle error, e.g., redirect to index.html
-              window.location.href = '/index.html'
+              //window.location.href = '/index.html'
             })
         }
       }
