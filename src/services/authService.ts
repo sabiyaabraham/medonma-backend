@@ -602,13 +602,8 @@ export const login = async (
   req: Request,
 ): Promise<LoginResponse> => {
   try {
-    const filteredBody = filterObj(
-      req.query,
-      'email',
-      'password',
-      'deviceData',
-    )
-    console.log("data", filteredBody)
+    const filteredBody = filterObj(req.query, 'email', 'password', 'deviceData')
+    console.log('data', filteredBody)
     const { email, password, deviceData } = filteredBody
 
     // Check if the user exists

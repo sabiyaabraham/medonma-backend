@@ -73,6 +73,7 @@
     "@types/morgan": "^1.9.9",
     "@types/multer": "^1.4.11",
     "@types/nodemailer": "^6.4.14",
+    "@types/otp-generator": "^4.0.2",
     "eslint": "^8.56.0",
     "jest": "^29.7.0",
     "typedoc": "^0.25.7"

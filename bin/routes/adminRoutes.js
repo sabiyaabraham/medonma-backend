@@ -1,43 +1,43 @@
-const express = require("express");
-const authMiddelware = require("../middlewares/authMiddelware");
+const express = require('express')
+const authMiddelware = require('../middlewares/authMiddelware')
 const {
   getDonarsListController,
   getHospitalListController,
   getOrgListController,
   deleteDonarController,
-} = require("../controllers/adminController");
-const adminMiddleware = require("../middlewares/adminMiddleware");
+} = require('../controllers/adminController')
+const adminMiddleware = require('../middlewares/adminMiddleware')
 
 //router object
-const router = express.Router();
+const router = express.Router()
 
 //Routes
 
 //GET || DONAR LIST
 router.get(
-  "/donar-list",
+  '/donar-list',
   authMiddelware,
   adminMiddleware,
-  getDonarsListController
-);
+  getDonarsListController,
+)
 //GET || HOSPITAL LIST
 router.get(
-  "/hospital-list",
+  '/hospital-list',
   authMiddelware,
   adminMiddleware,
-  getHospitalListController
-);
+  getHospitalListController,
+)
 //GET || ORG LIST
-router.get("/org-list", authMiddelware, adminMiddleware, getOrgListController);
+router.get('/org-list', authMiddelware, adminMiddleware, getOrgListController)
 // ==========================
 
 // DELETE DONAR || GET
 router.delete(
-  "/delete-donar/:id",
+  '/delete-donar/:id',
   authMiddelware,
   adminMiddleware,
-  deleteDonarController
-);
+  deleteDonarController,
+)
 
 //EXPORT
-module.exports = router;
+module.exports = router

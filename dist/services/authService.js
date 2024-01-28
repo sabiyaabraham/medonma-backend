@@ -379,7 +379,7 @@ exports.reSetUser = reSetUser;
 const login = (data, req) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const filteredBody = (0, filterObj_1.default)(req.query, 'email', 'password', 'deviceData');
-        console.log("data", filteredBody);
+        console.log('data', filteredBody);
         const { email, password, deviceData } = filteredBody;
         // Check if the user exists
         const user = yield Models_1.User.findOne({ email }).select('+password');

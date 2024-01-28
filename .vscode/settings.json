@@ -1,21 +1,21 @@
 {
-    "workbench.iconTheme": "material-icon-theme",
-    "editor.tabCompletion": "on",
-    "diffEditor.codeLens": true,
-    "better-comments.multilineComments": true,
-    "recommendations": [
-        "nrwl.angular-console",
-        "esbenp.prettier-vscode",
-        "firsttris.vscode-jest-runner",
-        "dbaeumer.vscode-eslint"
-      ],
-      "cSpell.words": [
-        "ajayos",
-        "nodelog",
-        "Ajay",
-        "@ajayos",
-        "@sendgrid",
-        "sendgrid",
-        "huch"
-      ]
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.tabCompletion": "on",
+  "diffEditor.codeLens": true,
+  "better-comments.multilineComments": true,
+  "recommendations": [
+    "nrwl.angular-console",
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "dbaeumer.vscode-eslint"
+  ],
+  "cSpell.words": [
+    "ajayos",
+    "nodelog",
+    "Ajay",
+    "@ajayos",
+    "@sendgrid",
+    "sendgrid",
+    "huch"
+  ]
 }

@@ -1,5 +1,5 @@
-const express = require("express");
-const authMiddelware = require("../middlewares/authMiddelware");
+const express = require('express')
+const authMiddelware = require('../middlewares/authMiddelware')
 const {
   createInventoryController,
   getInventoryController,
@@ -9,44 +9,44 @@ const {
   getOrgnaisationForHospitalController,
   getInventoryHospitalController,
   getRecentInventoryController,
-} = require("../controllers/inventoryController");
+} = require('../controllers/inventoryController')
 
-const router = express.Router();
+const router = express.Router()
 
 //routes
 // ADD INVENTORY || POST
-router.post("/create-inventory", authMiddelware, createInventoryController);
+router.post('/create-inventory', authMiddelware, createInventoryController)
 
 //GET ALL BLOOD RECORDS
-router.get("/get-inventory", authMiddelware, getInventoryController);
+router.get('/get-inventory', authMiddelware, getInventoryController)
 //GET RECENT BLOOD RECORDS
 router.get(
-  "/get-recent-inventory",
+  '/get-recent-inventory',
   authMiddelware,
-  getRecentInventoryController
-);
+  getRecentInventoryController,
+)
 
 //GET HOSPITAL BLOOD RECORDS
 router.post(
-  "/get-inventory-hospital",
+  '/get-inventory-hospital',
   authMiddelware,
-  getInventoryHospitalController
-);
+  getInventoryHospitalController,
+)
 
 //GET DONAR RECORDS
-router.get("/get-donars", authMiddelware, getDonarsController);
+router.get('/get-donars', authMiddelware, getDonarsController)
 
 //GET HOSPITAL RECORDS
-router.get("/get-hospitals", authMiddelware, getHospitalController);
+router.get('/get-hospitals', authMiddelware, getHospitalController)
 
 //GET orgnaisation RECORDS
-router.get("/get-orgnaisation", authMiddelware, getOrgnaisationController);
+router.get('/get-orgnaisation', authMiddelware, getOrgnaisationController)
 
 //GET orgnaisation RECORDS
 router.get(
-  "/get-orgnaisation-for-hospital",
+  '/get-orgnaisation-for-hospital',
   authMiddelware,
-  getOrgnaisationForHospitalController
-);
+  getOrgnaisationForHospitalController,
+)
 
-module.exports = router;
+module.exports = router
