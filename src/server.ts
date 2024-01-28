@@ -1,3 +1,15 @@
+/**
+ * @description      :
+ * @author           :
+ * @group            :
+ * @created          : 28/01/2024 - 07:58:20
+ *
+ * MODIFICATION LOG
+ * - Version         : 1.0.0
+ * - Date            : 28/01/2024
+ * - Author          :
+ * - Modification    :
+ **/
 import express, { Application } from 'express'
 import path from 'path'
 import routes from './Routes/index'
@@ -28,5 +40,8 @@ app.use(
 app.use(routes)
 
 app.use(express.static(path.join(__dirname, 'public')))
+app.get('/', (req, res) => {
+  return res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 export default app

@@ -3,6 +3,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * @description      :
+ * @author           :
+ * @group            :
+ * @created          : 28/01/2024 - 07:58:20
+ *
+ * MODIFICATION LOG
+ * - Version         : 1.0.0
+ * - Date            : 28/01/2024
+ * - Author          :
+ * - Modification    :
+ **/
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const index_1 = __importDefault(require("./Routes/index"));
@@ -24,4 +36,7 @@ app.use((0, cookie_session_1.default)({
 }));
 app.use(index_1.default);
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
+app.get('/', (req, res) => {
+    return res.sendFile(path_1.default.join(__dirname, 'public', 'index.html'));
+});
 exports.default = app;
