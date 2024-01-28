@@ -4,11 +4,11 @@
   "description": "MEDONMA LIFE CARE",
   "main": "dist/index.js",
   "scripts": {
-    "build": "prettier --write \"**/**/*.{js,ts,json,css,md}\" && tsc && typedoc",
+    "build": "prettier --write \"**/**/*.{js,ts,json,css,md,html}\" && tsc && typedoc && cp -r ./src/public ./dist/public",
     "start": "node dist/index.js",
     "test": "npx tsc && ts-node src/index.ts",
     "dev:format": "prettier --write .",
-    "dev:prettier": "prettier --write \"**/**/*.{js,ts,json,css,md}\"",
+    "dev:prettier": "prettier --write \"**/**/*.{js,ts,json,css,md,html}\"",
     "post:install": "npm run dev:prettier && npm run dev:format && npx tsc"
   },
   "repository": {

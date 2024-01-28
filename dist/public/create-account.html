@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>User Information Form</h2>
+
+    <form id="userForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            // Get form data
+            const formData = new FormData(event.target);
+
+            // Convert FormData to URLSearchParams
+            const queryParams = new URLSearchParams(formData);
+
+            // Construct the URL with query parameters
+            const url = `/api/v1/auth/create?${queryParams.toString()}`;
+
+            // Fetch API to send data to the server
+            try {
+                const response = await fetch(url, {
+                    method: 'GET'
+                });
+
+                const responseData = await response.json();
+
+                if (responseData.error) {
+                    Toastify({
+                        text: `Error: ${responseData.message}`,
+                        backgroundColor: "red",
+                    }).showToast();
+                } else {
+                    Toastify({
+                        text: `${responseData.message}`,
+                        backgroundColor: "green",
+                    }).showToast();
+                    console.log(responseData.data)
+
+                    // Redirect to /verify-account or handle as needed
+                    if (response.ok) {
+                        window.location.href = `/verify-account.html?email=${responseData.data.email}`;
+                    } else {
+                        // Handle non-2xx response status
+                        throw new Error(`Server responded with status ${response.status}`);
+                    }
+                }
+            } catch (error) {
+                // Show error toast on network failure, server error, or unexpected response
+                Toastify({
+                    text: `Error: ${error.message}`,
+                    backgroundColor: "red",
+                }).showToast();
+            }
+        });
+    </script>
+</body>
+</html>
