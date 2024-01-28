@@ -1,0 +1,73 @@
+{
+"root": true,
+"env": {
+    "node": true,
+    "es2021": true
+},
+"extends": [
+    "airbnb-base",
+    "prettier"
+],
+"parserOptions": {
+    "ecmaVersion": 12
+},
+"plugins": [
+    "prettier"
+],
+"rules": {
+    // Prettier rules
+    "prettier/prettier": [
+        "error",
+        {
+            "bracketSpacing": true,
+            "printWidth": 140,
+            "singleQuote": true,
+            "trailingComma": "none",
+            "tabWidth": 2,
+            "useTabs": true,
+            "endOfLine": "auto"
+        }
+    ],
+    // Custom rules
+    "no-console": "off", // You may want to enable or disable this based on your preferences
+    "import/order": "off",
+    "import/no-cycle": "off",
+    "no-unused-vars": [
+        "warn",
+        {
+            "ignoreRestSiblings": false
+        }
+    ],
+    // Additional rules
+    "quotes": [
+        "error",
+        "single"
+    ], // Enforce the use of single quotes
+    "semi": [
+        "error",
+        "always"
+    ], // Enforce the use of semicolons
+    "no-undef": "error", // Disallow the use of undeclared variables
+    "no-extra-semi": "error", // Disallow unnecessary semicolons
+    "comma-dangle": [
+        "error",
+        "never"
+    ], // Disallow trailing commas in object literals
+    "arrow-body-style": [
+        "error",
+        "as-needed"
+    ], // Require braces around arrow function bodies only when necessary
+    "arrow-parens": [
+        "error",
+        "as-needed"
+    ], // Require parentheses around arrow function parameters only when necessary
+    "prefer-arrow-callback": "error", // Prefer arrow functions as callbacks
+    "prefer-template": "error", // Prefer template literals over string concatenation
+    "no-param-reassign": [
+        "error",
+        {
+            "props": false
+        }
+    ] // Allow reassigning function parameters' properties
+}
+}
