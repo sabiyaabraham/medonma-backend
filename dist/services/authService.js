@@ -14,15 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.forgotPassword = exports.protectAdmin = exports.protectUser = exports.logoutDevice = exports.deviceResendOTP = exports.verifyLogin = exports.login = exports.reSetUser = exports.reRequest = exports.verify = exports.create = void 0;
 /**
- * @description      :
- * @author           :
- * @group            :
+ * @description      : Auth functions
+ * @author           : Sabiya Abraham
+ * @group            : Team MEDONMA
  * @created          : 27/01/2024 - 15:42:31
  *
  * MODIFICATION LOG
  * - Version         : 1.0.0
  * - Date            : 27/01/2024
- * - Author          :
+ * - Author          : Sabiya Abraham
  * - Modification    :
  **/
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -382,6 +382,7 @@ const login = (data, req) => __awaiter(void 0, void 0, void 0, function* () {
         console.log('data', filteredBody);
         const { email, password, deviceData } = filteredBody;
         // Check if the user exists
+        // @ts-ignore
         const user = yield Models_1.User.findOne({ email }).select('+password');
         if (!user) {
             return {
@@ -432,7 +433,7 @@ const login = (data, req) => __awaiter(void 0, void 0, void 0, function* () {
             length: 2,
             style: 'upperCase',
         });
-        const mailData = yield mail_1.default.sendDeviceOTP(user.firstName + ' ' + user.lastName, user.email, deviceData);
+        const mailData = yield mail_1.default.sendDevice(user.firstName + ' ' + user.lastName, user.email, deviceData);
         if (mailData.error) {
             return {
                 status: 500,
@@ -441,7 +442,7 @@ const login = (data, req) => __awaiter(void 0, void 0, void 0, function* () {
                 data: null,
             };
         }
-        const device = yield Models_1.Device.create(Object.assign({ name: deviceName, token: token, user: user._id, verified: false, otp: mailData.data }, deviceData));
+        const device = yield Models_1.Device.create(Object.assign({ name: deviceName, token: token, user: user._id, verified: true, otp: mailData.data }, deviceData));
         return {
             status: 200,
             error: false,
@@ -495,6 +496,7 @@ const verifyLogin = (data, req) => __awaiter(void 0, void 0, void 0, function* (
             };
         }
         // Check if the user exists
+        // @ts-ignore
         const user = yield Models_1.User.findOne({ email: decoded.email });
         if (!user) {
             return {

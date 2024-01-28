@@ -1,13 +1,13 @@
 /**
- * @description      :
- * @author           :
- * @group            :
+ * @description      : Auth functions
+ * @author           : Sabiya Abraham
+ * @group            : Team MEDONMA
  * @created          : 27/01/2024 - 15:42:31
  *
  * MODIFICATION LOG
  * - Version         : 1.0.0
  * - Date            : 27/01/2024
- * - Author          :
+ * - Author          : Sabiya Abraham
  * - Modification    :
  **/
 import jwt from 'jsonwebtoken'
@@ -607,6 +607,7 @@ export const login = async (
     const { email, password, deviceData } = filteredBody
 
     // Check if the user exists
+    // @ts-ignore
     const user = await User.findOne({ email }).select('+password')
 
     if (!user) {
@@ -665,7 +666,7 @@ export const login = async (
       style: 'upperCase',
     })
 
-    const mailData = await MAIL.sendDeviceOTP(
+    const mailData = await MAIL.sendDevice(
       user.firstName + ' ' + user.lastName,
       user.email,
       deviceData,
@@ -684,7 +685,7 @@ export const login = async (
       name: deviceName,
       token: token,
       user: user._id,
-      verified: false,
+      verified: true,
       otp: mailData.data,
       ...deviceData,
     })
@@ -782,6 +783,7 @@ export const verifyLogin = async (
     }
 
     // Check if the user exists
+    // @ts-ignore
     const user = await User.findOne({ email: decoded.email })
 
     if (!user) {

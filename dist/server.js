@@ -4,15 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @description      :
- * @author           :
- * @group            :
+ * @description      : SERVER PROGRAM
+ * @author           : Sabiya Abraham
+ * @group            : Team MEDONMA
  * @created          : 28/01/2024 - 07:58:20
  *
  * MODIFICATION LOG
  * - Version         : 1.0.0
  * - Date            : 28/01/2024
- * - Author          :
+ * - Author          : Sabiya Abraham
  * - Modification    :
  **/
 const express_1 = __importDefault(require("express"));

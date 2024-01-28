@@ -140,7 +140,7 @@
               if (response.ok) {
                 localStorage.setItem('authToken', responseData.data.token)
                 localStorage.setItem('email', responseData.data.email)
-                window.location.href = `/verify.html`
+                window.location.href = `/dashboard.html`
               } else {
                 // Handle non-2xx response status
                 throw new Error(
