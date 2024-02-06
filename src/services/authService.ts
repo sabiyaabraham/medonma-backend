@@ -594,7 +594,7 @@ interface LoginResponse {
   status: number
   error: boolean
   message: string
-  data: { token: string; email: string } | null
+  data: { token: string; email: string, device: any, role: String } | null
 }
 
 export const login = async (
@@ -602,9 +602,8 @@ export const login = async (
   req: Request,
 ): Promise<LoginResponse> => {
   try {
-    const filteredBody = filterObj(req.query, 'email', 'password', 'deviceData')
-    console.log('data', filteredBody)
-    const { email, password, deviceData } = filteredBody
+    const filteredBody = filterObj(req.query, 'email', 'password', 'deviceData', 'role')
+    const { email, password, role, deviceData } = filteredBody
 
     // Check if the user exists
     // @ts-ignore
@@ -642,6 +641,15 @@ export const login = async (
         status: 400,
         error: true,
         message: 'Account is not verified and not available for login.',
+        data: null,
+      }
+    }
+
+    if (user.role !== role) {
+      return {
+        status: 400,
+        error: true,
+        message: 'User role does not match.',
         data: null,
       }
     }
@@ -693,8 +701,8 @@ export const login = async (
     return {
       status: 200,
       error: false,
-      message: 'OTP sent for device verification.',
-      data: { token, email: user.email },
+      message: 'Account login ',
+      data: { token, email: user.email, device: device._id, role },
     }
   } catch (error: any) {
     console.error(error)
